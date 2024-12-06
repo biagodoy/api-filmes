@@ -13,8 +13,11 @@ app= Flask(__name__)
 # Request para adicionar filme
 @app.post("/filme")
 def Add_filme():
-    autenticacao = request.headers.getlist()
+    autenticacao = request.headers.get('Authorization')
     print(autenticacao)
+    if not autenticacao:
+        return make_response('Acesso não autorizado', 401)
+    
     filme_enviado = request.get_json()
     id_do_filme = FilmeService.add_filme(filme_enviado['titulo'],filme_enviado['diretor'],filme_enviado['ano_lancamento'],filme_enviado['genero'],filme_enviado['nota'])
 
@@ -23,6 +26,7 @@ def Add_filme():
         "detalhe": id_do_filme.id
     }
     return make_response(resposta,200)
+
 
 # Pegar somente um filme
 @app.get("/filmes/<int:id>")
