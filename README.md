@@ -13,3 +13,6 @@
 - Calcular avaliação final de cada filme
 
 criar sessão de fluxo de funcionamentos da api
+
+
+### Fluxo Básico de Funcionamento
