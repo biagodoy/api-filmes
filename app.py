@@ -26,6 +26,8 @@ def valida_header(autenticacao):
         }
         return {'validado': False,'resposta': make_response(resposta, 401)}
     
+    return {'validado': True}
+    
 # Request para adicionar filme
 @app.post("/filme")
 def Add_filme():
