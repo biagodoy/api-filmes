@@ -18,6 +18,9 @@ def Add_filme():
     if not autenticacao:
         return make_response('Acesso não autorizado', 401)
     
+    if not autenticacao == ("4b9f2a87-704e-4685-b0bf-668b1c5eb8b1"):
+        return make_response('Token de autenticação não encontrado na base de dados', 401)
+    
     filme_enviado = request.get_json()
     id_do_filme = FilmeService.add_filme(filme_enviado['titulo'],filme_enviado['diretor'],filme_enviado['ano_lancamento'],filme_enviado['genero'],filme_enviado['nota'])
 
